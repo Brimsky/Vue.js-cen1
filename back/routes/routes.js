@@ -9,5 +9,7 @@ Router.get("/charts",getallpricedata);
 //get one price from dealer
 Router.get("/product/:id", getdizozols);
 
+
+Router.post("/product/:id", getdizozols);
 //export default router
 export default Router;

@@ -1,8 +1,8 @@
-import database from '../config/database';
+import database from '../config/database.js';
 
 // get all product prices
 export const getallpricedata = (result) => {
-    database.query("SELECT * FROM koki.Prices", (err, results) => {
+    database.query("SELECT * FROM timber.timberprices", (err, results) => {
         if (err) {
             console.log(err);
             result(err, null);
@@ -14,7 +14,7 @@ export const getallpricedata = (result) => {
 
 //get one product price
 export const getdizozols = (id,result) => {
-    database.query("SELECT * FROMS koki.dizozols WHERE price_id = ?", [id], (err, results) =>{
+    database.query("SELECT * FROMS timber.timberprices WHERE TimberID = ?", [id], (err, results) =>{
         if (err) {
             console.log(err);
             result(err, null);

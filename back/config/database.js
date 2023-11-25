@@ -1,3 +1,4 @@
+//import mysql from 'mysql2';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
 
@@ -10,6 +11,7 @@ const database = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+export default database;
 // console.log(process.env.DATABASE_HOST);
 // console.log(process.env.DATABASE_USER);
 // console.log(process.env.DATABASE_PASSWORD);
