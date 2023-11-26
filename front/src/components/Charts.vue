@@ -11,18 +11,18 @@ export default {
         };
     },
     created(){
-        this.getallpricedata();
+        this.getprice();
     },
     methods:{
         // get product price
-        async getallpricedata(){
+        async getprice(){
             try{
-                const response = await axios.get("http://loscalhost:3991/charts");
-                this.items = response.data
+                const response = await axios.get("http://localhost:3991/charts");
+                this.items = response.data;
                 console.log(this.items);
             } catch(err){
                 console.log(err);
-            };
+            }
         },
     },
 };

@@ -1,22 +1,21 @@
-import {getallpricedata, getdizozols} from '../models/pricedata.js';
+// Import functions
+import { getdata, getdizozols } from './pricedata.js';
 
-export const getallpricedata = (req, res) =>{
-    showPrice((err,results) =>{
-        if(err){
-            res.send(err);
-        }else {
-            res.json(results)
-        }
-    });
-};
+//Get all product prices
+getdata((err, results) => {
+  if (err) {
+    console.log('Error getting all prices:', err);
+  } else {
+    console.log('All prices:', results);
+  }
+});
 
-export const getdizozols = (req,res) => {
-    getdizozols(req.params.id, (err, results) => {
-        if(err){
-            res.send(err);
-        }else {
-            res.json(results)
-        }
-    });
-};
-
+// Get the price for a specific product (assuming 'id' identifier)
+const productId = 123; // valid product ID
+getdizozols(productId, (err, result) => {
+  if (err) {
+    console.log('Error getting product price:', err);
+  } else {
+    console.log('Product price:', result);
+  }
+});

@@ -5,6 +5,7 @@ export const register_new_user = (data, result) => {
     database.query("INSERT INTO users SET?"), [data], (err,results) =>{
         if (err) {
             console.log(err);
+            console.error('Error executing query:', err);
             result(err, null);
         } else {
             result(null, results);

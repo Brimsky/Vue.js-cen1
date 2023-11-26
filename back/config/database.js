@@ -1,8 +1,9 @@
-//import mysql from 'mysql2';
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
-dotenv.config({path: './back/config/.env'})
+dotenv.config({path: '../back/config/.env'})
+
+
 
 const database = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -11,8 +12,6 @@ const database = mysql.createConnection({
     database: process.env.DATABASE
 });
 
+
+
 export default database;
-// console.log(process.env.DATABASE_HOST);
-// console.log(process.env.DATABASE_USER);
-// console.log(process.env.DATABASE_PASSWORD);
-// console.log(process.env.DATABASE);

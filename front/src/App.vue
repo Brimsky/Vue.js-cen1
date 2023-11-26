@@ -3,10 +3,6 @@
     <header>
       <NavBar />
     </header>
-    <div v-if="loading">Loading...</div>
-    <div v-if="data">
-      <HomeView/>
-    </div>
     <RouterView />
   </div>
 </template>
@@ -21,30 +17,30 @@ export default {
     NavBar,
     HomeView
 },
-  data() {
-    return {
-      loading: true,
-      data: null,
-    };
-  },
-  mounted() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const response = await axios.post('http://your-api-endpoint/data', {
+  // data() {
+  //   return {
+  //     loading: true,
+  //     HomeView: null,
+  //   };
+  // },
+  // mounted() {
+  //   this.fetchData();
+  // },
+  // methods: {
+  //   async fetchData() {
+  //     try {
+  //       const response = await axios.post('http://loscalhost:3991', {
         
-        });
+  //       });
 
-        this.data = response.data;
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        this.loading = false;
-      }
-    },
-  },
+  //       this.data = response.data;
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     } finally {
+  //       this.loading = false;
+  //     }
+  //   },
+  // },
   
 };
 </script>
