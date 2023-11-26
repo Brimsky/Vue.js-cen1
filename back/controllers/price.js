@@ -1,8 +1,8 @@
 // Import functions
-import { getdata, getdizozols } from './pricedata.js';
+import { Getdata, getdizozols } from './pricedata.js';
 
 //Get all product prices
-getdata((err, results) => {
+Getdata((err, results) => {
   if (err) {
     console.log('Error getting all prices:', err);
   } else {

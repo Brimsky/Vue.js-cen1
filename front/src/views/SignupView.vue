@@ -4,7 +4,7 @@
       <h2 class="animated-title">Signup</h2>
       <form @submit.prevent="signup" class="animated-form">
         <div class="form-group">
-          <input type="text" id="username" placeholder="Username" v-model="username" name="username" required class="animated-input" />
+          <input type="text" id="name" placeholder="Name" v-model="username" name="name" required class="animated-input" />
         </div>
         <div class="form-group">
           <input type="text" id="surname" placeholder="Surname" v-model="surname" name="surname" required class="animated-input" />
