@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import Router from "./routes/routes.js";
+import authController from './controllers/auth.js';
 
 // import mysql from 'mysql';
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use(Router);
 
+app.use(authController);
 const port = 3991;
 app.listen(port, () => {
   console.log(`Server started on http://localhost:${port}`);

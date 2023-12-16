@@ -18,7 +18,7 @@ export default {
         // get product price
         async getprice(){
             try{
-                const response = await axios.get("http://localhost:3991/charts");
+                const response = await axios.get("http://localhost:3991/prices");
                 this.items = response.data;
                 console.log(this.items);
             } catch(err){

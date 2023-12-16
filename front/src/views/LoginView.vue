@@ -1,16 +1,18 @@
 <template>
   <div class="Login-container">
     <div class="center-content">
-      <h2 class="animated-title">Login</h2>
-      <form @submit.prevent="login" class="animated-form">
+      <h2 class="title">Login</h2>
+      <form @submit.prevent="login" class="form">
         <div class="form-group">
-          <input type="email" id="email" v-model="email" placeholder="Email" name="email" required class="animated-input" />
+          <input type="email" id="email" v-model="loginEmail" placeholder="Email" name="email" required class="input" />
         </div>
         <div class="form-group-pass">
-          <input type="password" id="password" v-model="password" placeholder="Password" name="password" required class="animated-input" />
+          <input type="password" id="password" v-model="loginPassword" placeholder="Password" name="password" required class="input" />
         </div>
-        <router-link to="/signup" class="animated-link"><h4>Don't have an account?</h4></router-link>
-        <button type="submit" class="animated-button">Login</button>
+        <div v-if="loginErrorMessage" class="error-message">{{ loginErrorMessage }}</div>
+        <div v-if="loginSuccessMessage" class="success-message">{{ loginSuccessMessage }}</div>
+        <router-link to="/signup" class="link"><h4>Don't have an account?</h4></router-link>
+        <button type="submit" value="Login" class="button">Login</button>
       </form>
     </div>
   </div>
@@ -22,41 +24,78 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      email: '',
-      password: ''
+      loginEmail: '',
+      loginPassword: '',
+      loginErrorMessage: null,
+      loginSuccessMessage: null,
     };
   },
   methods: {
-    async login() {
-      try {
-        // Make an HTTP POST request to your server endpoint
-        const response = await axios.post('http://localhost:3991/api/login', {
-          email: this.email,
-          password: this.password
+    login() {
+      const loginData = {
+        email: this.loginEmail,
+        password: this.loginPassword,
+      };
+
+      axios.post('http://localhost:3991/login', loginData)
+        .then(response => {
+          console.log(response.data);
+
+          if (response.data.message) {
+            this.loginSuccessMessage = response.data.message;
+          }
+
+          this.loginErrorMessage = null;
+        })
+        .catch(error => {
+          console.error('Error during user login:', error);
+
+          this.loginSuccessMessage = null;
+
+          if (error.response && error.response.status === 401) {
+            this.loginErrorMessage = 'Invalid credentials. Please check your email and password.';
+          } else {
+            this.loginErrorMessage = 'An error occurred during login. Please try again.';
+          }
         });
-
-        // Handle the server response
-        console.log(response.data); // You can do something with the response
-
-        // Redirect the user or perform any other actions as needed
-      } catch (error) {
-        console.error('Error submitting signup information:', error);
-        // Handle errors, show a message to the user, etc.
-      }
-    }
-  }
+    },
+  },
 };
 </script>
 
+
 <style scoped>
-h2.animated-title {
+
+.error-message {
+  width: 90%;
+  display: flex;
+  padding: 10px;
+  background-color: rgb(230, 33, 19);
+  color: #fff;
+  border-radius: 5px;
+  margin: 5%;
+  transition: 0.5s;
+  justify-content: center;
+}
+.success-message {
+  width: 90%;
+  display: flex;
+  padding: 10px;
+  background-color: rgb(22, 151, 5);
+  color: #f5f5f5;
+  border-radius: 5px;
+  margin: 5%;
+  transition: 0.5s;
+  justify-content: center;
+}
+h2.title {
   color: #fff;
   text-align: center;
   font-size: 3em;
   margin-bottom: 1em;
   animation: fadeInDown 1s ease-out;
 }
-input.animated-input::placeholder {
+input.input::placeholder {
   color: #ccc;
   font-weight: bold;
   opacity: 1;
@@ -65,7 +104,6 @@ input.animated-input::placeholder {
 
 .Login-container {
   max-width: 600px;
-  height: 400px;
   margin: 0 auto;
   background-color: rgba(255, 255, 255, .1);
   color: rgba(0, 0, 0, 0.8);
@@ -87,12 +125,12 @@ input.animated-input::placeholder {
   flex-direction: column;
 }
 
-form.animated-form {
+form.form {
   text-align: center;
   animation: fadeInUp 1s ease-out;
 }
 
-button.animated-button {
+button.button {
   width: 90%;
   padding: 10px;
   background-color: #a6eeb0;
@@ -100,25 +138,30 @@ button.animated-button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 5%;
   transition: 0.5s;
   animation: fadeIn 1s ease-out;
 }
 
-button.animated-button:hover {
+button.button:hover {
   background-color: #60ee73;
 }
 
-input.animated-input {
+input.input {
+  background-color: rgb(44, 43, 43);
   width: 90%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 10px;
-  color: #333;
+  color: white;
+}
+::-ms-reveal {
+  filter: invert(100%);
 }
 
-h4.animated-link {
+
+h4.link {
   margin-top: 10px;
   color: #60ee73;
   cursor: pointer;

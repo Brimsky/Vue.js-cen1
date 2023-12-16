@@ -2,7 +2,6 @@
     <div class="news-container">
       <div class="news-text">
         <div class="row">
-        <img v-for="img in images" v-bind:src="img"/>
       </div>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
@@ -11,6 +10,7 @@
           aliquid voluptatum.
         </p>
       </div>
+      <button>Logout</button>
     </div>
   </template>
   

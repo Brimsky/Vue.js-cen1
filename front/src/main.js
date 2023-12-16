@@ -1,14 +1,17 @@
 import './assets/main.css'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router/index.js'
+import { createApp } from 'vue';
+import axios from 'axios';
+import VueAxios from 'vue-axios';
+import App from './App.vue';
+import router from './router/index.js';
+import store from './store/index.js';
+import navigationGuard from './router/routerGuard';
 
-const app = createApp(App)
+const app = createApp(App);
+navigationGuard(router);
+app.use(VueAxios, axios);
+app.use(router);
+app.use(store);
 
-app.use(VueAxios, axios)
+app.mount('#app');
 
-app.use(router)
-
-app.mount('#app')

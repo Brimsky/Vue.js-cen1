@@ -17,30 +17,6 @@ export default {
     NavBar,
     HomeView
 },
-  // data() {
-  //   return {
-  //     loading: true,
-  //     HomeView: null,
-  //   };
-  // },
-  // mounted() {
-  //   this.fetchData();
-  // },
-  // methods: {
-  //   async fetchData() {
-  //     try {
-  //       const response = await axios.post('http://loscalhost:3991', {
-        
-  //       });
-
-  //       this.data = response.data;
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error);
-  //     } finally {
-  //       this.loading = false;
-  //     }
-  //   },
-  // },
   
 };
 </script>
